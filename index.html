@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маркетинговый аудит — Пироговая компания</title>
+    <style>
+        :root {
+            --primary: #D4451A;
+            --primary-dark: #B8390F;
+            --accent: #F4A236;
+            --dark: #1A1A2E;
+            --dark2: #16213E;
+            --light: #F8F5F1;
+            --gray: #6B7280;
+            --green: #10B981;
+            --red: #EF4444;
+            --blue: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+            color: white;
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(244, 162, 54, 0.15);
+            color: var(--accent);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(244, 162, 54, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.25rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #E5E7EB;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Market Table */
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .market-table th {
+            text-align: left;
+            padding: 1rem;
+            background: var(--dark);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .market-table th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .market-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .market-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 0.95rem;
+        }
+
+        .market-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .market-table tbody tr:hover {
+            background: rgba(212, 69, 26, 0.03);
+        }
+
+        .highlight-row {
+            background: rgba(212, 69, 26, 0.06) !important;
+            font-weight: 600;
+        }
+
+        .highlight-row td {
+            color: var(--primary);
+        }
+
+        /* Bar chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            min-width: 180px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 36px;
+            background: #F3F4F6;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            transition: width 1s ease;
+        }
+
+        .bar-fill.primary { background: var(--primary); }
+        .bar-fill.accent { background: var(--accent); }
+        .bar-fill.blue { background: var(--blue); }
+        .bar-fill.gray { background: #9CA3AF; }
+        .bar-fill.green { background: var(--green); }
+
+        /* Problem block */
+        .problem-block {
+            background: linear-gradient(135deg, #FEF2F2, #FFF7ED);
+            border: 1px solid #FECACA;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem-block h3 {
+            color: var(--red);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .problem-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .problem-list li::before {
+            content: "!";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            background: var(--red);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-col {
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .comparison-bad {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+        }
+
+        .comparison-good {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+        }
+
+        .comparison-col h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-bad h4 { color: var(--red); }
+        .comparison-good h4 { color: var(--green); }
+
+        .comparison-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .comparison-col li {
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .comparison-bad li::before {
+            content: "\2717";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .comparison-good li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* Ad metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid #E5E7EB;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .metric-value.red { color: var(--red); }
+        .metric-value.green { color: var(--green); }
+        .metric-value.blue { color: var(--blue); }
+        .metric-value.accent { color: var(--accent); }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+
+        .metric-change {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .metric-change.up { color: var(--green); }
+        .metric-change.down { color: var(--red); }
+
+        /* ROAS Explanation */
+        .roas-explain {
+            background: #FFF7ED;
+            border: 1px solid #FED7AA;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .roas-explain h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .roas-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .roas-box {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+        }
+
+        .roas-box.invest {
+            background: var(--dark);
+            color: white;
+        }
+
+        .roas-box.return {
+            background: var(--red);
+            color: white;
+        }
+
+        .roas-box.target {
+            background: var(--green);
+            color: white;
+        }
+
+        .roas-box .roas-amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .roas-box .roas-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .roas-arrow {
+            font-size: 2rem;
+            color: var(--gray);
+        }
+
+        /* Recommendations */
+        .rec-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .rec-group {
+            margin-bottom: 3rem;
+        }
+
+        .rec-group-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rec-priority {
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .priority-urgent {
+            background: #FEE2E2;
+            color: var(--red);
+        }
+
+        .priority-medium {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .priority-long {
+            background: #DBEAFE;
+            color: var(--blue);
+        }
+
+        .rec-group-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .rec-cards {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .rec-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #E5E7EB;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .rec-num {
+            min-width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .rec-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .rec-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .rec-effect {
+            display: inline-block;
+            background: #F0FDF4;
+            color: var(--green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Forecast table */
+        .forecast-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .forecast-table th {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .forecast-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #F3F4F6;
+            font-size: 0.95rem;
+        }
+
+        .forecast-table .effect-cell {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Donut chart */
+        .donut-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .donut-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .donut-container svg {
+            transform: rotate(-90deg);
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .legend-text {
+            font-size: 0.95rem;
+        }
+
+        .legend-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-left: auto;
+            padding-left: 1rem;
+        }
+
+        /* Insight box */
+        .insight-box {
+            background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+            border: 1px solid #C7D2FE;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .insight-box p {
+            font-size: 0.95rem;
+            color: #3730A3;
+        }
+
+        .insight-box strong {
+            color: #1E1B4B;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-value { font-size: 1.8rem; }
+            .comparison { grid-template-columns: 1fr; }
+            .bar-label { min-width: 120px; font-size: 0.8rem; }
+            .nav-links { display: none; }
+            section { padding: 3rem 1rem; }
+            .roas-visual { flex-direction: column; gap: 1rem; }
+            .roas-arrow { transform: rotate(90deg); }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Menu comparison */
+        .menu-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid #E5E7EB;
+        }
+
+        .menu-card.ours {
+            border-color: var(--red);
+            border-width: 2px;
+        }
+
+        .menu-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-count {
+            background: #F3F4F6;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .menu-card.ours .menu-count {
+            background: #FEE2E2;
+            color: var(--red);
+        }
+
+        .menu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .menu-tag {
+            background: #F3F4F6;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="nav-logo">Аудит <span>Пироговая компания</span></div>
+        <ul class="nav-links">
+            <li><a href="#market">Рынок</a></li>
+            <li><a href="#brand">Бренд</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#visual">Визуал</a></li>
+            <li><a href="#ads">Реклама</a></li>
+            <li><a href="#recs">Рекомендации</a></li>
+            <li><a href="#niche">Выводы</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">Март 2026</div>
+        <h1>Пироговая компания<br><span>Точки роста и план действий</span></h1>
+        <p>Комплексный анализ текущего состояния бизнеса, конкурентной среды и рекламных кампаний с конкретными рекомендациями</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">3-е</div>
+                <div class="hero-stat-label">место по узнаваемости</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">83%</div>
+                <div class="hero-stat-label">ROAS (убыток)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">3</div>
+                <div class="hero-stat-label">категории в меню</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 1. Market -->
+<section id="market">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">1</div>
+            <h2>Анализ рынка доставки еды в Сургуте</h2>
+            <p>Объём поискового спроса по ключевым категориям в Яндексе</p>
+        </div>
+
+        <div class="bar-chart fade-in">
+            <div class="bar-item">
+                <div class="bar-label">Роллы / Суши </div>
+                <div class="bar-track">
+                    <div class="bar-fill blue" style="width: 100%">14 953 запр/мес — 56%</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Пицца</div>
+                <div class="bar-track">
+                    <div class="bar-fill accent" style="width: 47%">7 000 запр/мес — 26%</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Пироги</div>
+                <div class="bar-track">
+                    <div class="bar-fill primary" style="width: 32%">4 739 запр/мес — 18%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box fade-in">
+            <div class="insight-icon">&#128161;</div>
+            <p><strong>Пироги = 18% рынка доставки еды в Сургуте.</strong> Ниша заметно уже, чем роллы и пицца: кроме сервисов доставки, пироги напрямую конкурируют с офлайн-пекарнями, поэтому рост бизнеса зависит не только от рекламы. Задача — забрать максимальную долю из 4 739 запросов и расширить аудиторию за счёт смежных категорий (комбо с другими блюдами).</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Brand -->
+<section id="brand" class="bg-white">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">2</div>
+            <h2>Позиция бренда среди конкурентов</h2>
+            <p>Брендовый спрос — количество поисковых запросов по названию компании</p>
+        </div>
+
+        <div class="bar-chart fade-in">
+            <div class="bar-item">
+                <div class="bar-label">Пицца Фабрика</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 100%">2 522</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Хинкал и Чудушки</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 85%">2 139</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label" style="font-weight:700;color:var(--primary)">Пироговая компания</div>
+                <div class="bar-track">
+                    <div class="bar-fill primary" style="width: 66%">1 673</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Чашечка</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 48%">1 200</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Машенькины пироги</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 30%">750</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Пироговая 1</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 21%">535</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Обожайка</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 20%">500</div>
+                </div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label">Сибирский пекарь</div>
+                <div class="bar-track">
+                    <div class="bar-fill gray" style="width: 19%">472</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box fade-in">
+            <div class="insight-icon">&#128161;</div>
+            <p><strong>Сильная позиция:</strong> «Пироговая компания» — лидер среди специализированных пироговых (1 673 vs 750 у «Машенькиных пирогов»). Но мультикатегорийные конкуренты опережают на 30–50% за счёт более широкого ассортимента, который привлекает разные сегменты.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Menu -->
+<section id="menu">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">3</div>
+            <h2>Ассортимент: критическая проблема</h2>
+            <p>Сравнение ширины меню с основными конкурентами</p>
+        </div>
+
+        <div class="menu-comparison fade-in">
+            <div class="menu-card">
+                <h4>Пицца Фабрика <span class="menu-count">14 категорий</span></h4>
+                <div class="menu-tags">
+                    <span class="menu-tag">Пицца</span>
+                    <span class="menu-tag">Римская пицца</span>
+                    <span class="menu-tag">Роллы</span>
+                    <span class="menu-tag">Комбо</span>
+                    <span class="menu-tag">Завтраки</span>
+                    <span class="menu-tag">Супы</span>
+                    <span class="menu-tag">Салаты</span>
+                    <span class="menu-tag">Стритфуд</span>
+                    <span class="menu-tag">Горячие блюда</span>
+                    <span class="menu-tag">Детское</span>
+                    <span class="menu-tag">Закуски</span>
+                    <span class="menu-tag">Местная кухня</span>
+                    <span class="menu-tag">Постное</span>
+                    <span class="menu-tag">Десерты</span>
+                </div>
+            </div>
+            <div class="menu-card">
+                <h4>Хинкал и Чуду <span class="menu-count">10 категорий</span></h4>
+                <div class="menu-tags">
+                    <span class="menu-tag">Завтраки</span>
+                    <span class="menu-tag">Супы</span>
+                    <span class="menu-tag">Салаты</span>
+                    <span class="menu-tag">Мангал</span>
+                    <span class="menu-tag">Бургеры</span>
+                    <span class="menu-tag">Бизнес-ланчи</span>
+                    <span class="menu-tag">Десерты</span>
+                    <span class="menu-tag">Пироги</span>
+                    <span class="menu-tag">Полуфабрикаты</span>
+                    <span class="menu-tag">Горячее</span>
+                </div>
+            </div>
+            <div class="menu-card ours">
+                <h4>Пироговая компания <span class="menu-count">4 категории</span></h4>
+                <div class="menu-tags">
+                    <span class="menu-tag">Курник</span>
+                    <span class="menu-tag">Пироги</span>
+                    <span class="menu-tag">Пицца</span>
+					<span class="menu-tag">Выпечка</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-block fade-in">
+            <h3>Почему узкое меню — это проблема</h3>
+            <ul class="problem-list">
+                <li>Низкий средний чек — клиент не может дозаказать салат, суп или десерт</li>
+                <li>Низкая частота заказов — одни пироги быстро «приедаются»</li>
+                <li>Потеря семейных заказов — сложно угодить всем членам семьи</li>
+                <li>Потеря корпоративных заказов — для офисного обеда нужно разнообразие</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- Best Practice Section -->
+<section class="bg-white" style="padding-top:3rem;padding-bottom:3rem;">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Лучшая практика: наборы-дегустации</h2>
+            <p>Наборы из нескольких вкусов в одной коробке снижают барьер первого заказа и увеличивают средний чек. Клиенту не нужно выбирать один вкус — он получает сразу несколько.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;" class="fade-in">
+            <div style="border-radius:16px;overflow:hidden;border:1px solid #E5E7EB;">
+                <img src="1.jpg" alt="Пример набора-дегустации 1" style="width:100%;height:auto;display:block;">
+            </div>
+            <div style="border-radius:16px;overflow:hidden;border:1px solid #E5E7EB;">
+                <img src="2.jpg" alt="Пример набора-дегустации 2" style="width:100%;height:auto;display:block;">
+            </div>
+        </div>
+        <div class="insight-box fade-in" style="margin-top:1.5rem;">
+            <div class="insight-icon">&#11088;</div>
+            <p><strong>Это направление стоит внедрить в первую очередь.</strong> Наборы-дегустации (4–9 мини-пирогов в 1 коробке) — проверенная модель, которая работает у конкурентов. Она увеличивает средний чек и стимулирует повторные заказы.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Visual -->
+<section id="visual" class="bg-white">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">4</div>
+            <h2>Визуальная подача на сайте</h2>
+            <p>Фото товаров напрямую влияют на конверсию в заказ</p>
+        </div>
+
+        <div class="comparison fade-in">
+            <div class="comparison-col comparison-bad">
+                <h4>Пироговая компания (сейчас)</h4>
+                <div style="border-radius:12px;overflow:hidden;margin-bottom:1rem;">
+                    <img src="3.jpg" alt="Пример фото Пироговой компании" style="width:100%;height:auto;display:block;">
+                </div>
+                <ul>
+                    <li>Пироги на фото закрытые — выглядят одинаково</li>
+                    <li>Начинка не видна — нет аппетитности</li>
+                    <li>Сложно отличить товары друг от друга</li>
+                    <li>Клиент не понимает разницу в цене</li>
+                    <li>Нет описания, нет состава</li>
+                </ul>
+            </div>
+            <div class="comparison-col comparison-good">
+                <h4>Машенькины пироги (эталон)</h4>
+                <div style="border-radius:12px;overflow:hidden;margin-bottom:1rem;">
+                    <img src="4.jpg" alt="Пример фото Машенькиных пирогов" style="width:100%;height:auto;display:block;">
+                </div>
+                <ul>
+                    <li>Видна начинка — вызывает аппетит</li>
+                    <li>Большие пироги — ощущение ценности</li>
+                    <li>Профессиональная фуд-съёмка</li>
+                    <li>Каждый пирог визуально уникален</li>
+                    <li>Легко выбирать — хочется попробовать</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insight-box fade-in">
+            <div class="insight-icon">&#128247;</div>
+            <p><strong>Профессиональная фуд-съёмка — одна из самых быстрых и дешёвых мер</strong> с высоким эффектом.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Ads -->
+<section id="ads">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">5</div>
+            <h2>Анализ рекламных кампаний</h2>
+            <p>Текущие показатели контекстной рекламы за март 2026</p>
+        </div>
+
+        <div class="metrics-grid fade-in">
+            <div class="metric-card">
+                <div class="metric-value accent">256 000 &#8381;</div>
+                <div class="metric-label">Расход в марте</div>
+                <div class="metric-change">лимит: 500 000 &#8381;/мес</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value red">83%</div>
+                <div class="metric-label">ROAS</div>
+                <div class="metric-change up">&#8593; было 59% в феврале</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value blue">102</div>
+                <div class="metric-label">Заказов с поиска</div>
+                <div class="metric-change">93% всех заказов с рекламы</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" style="color:var(--gray)">7</div>
+                <div class="metric-label">Заказов с РСЯ</div>
+                <div class="metric-change down">неэффективный канал</div>
+            </div>
+        </div>
+
+        <!-- ROAS explanation -->
+        <div class="roas-explain fade-in">
+            <h4>Что означает ROAS 83%?</h4>
+            <p style="color:var(--gray);font-size:0.95rem;">ROAS (Return on Ad Spend) показывает, сколько выручки приносит каждый рубль, вложенный в рекламу.</p>
+            <div class="roas-visual">
+                <div class="roas-box invest">
+                    <div class="roas-amount">1 &#8381;</div>
+                    <div class="roas-label">Вложили в рекламу</div>
+                </div>
+                <div class="roas-arrow">&#8594;</div>
+                <div class="roas-box return">
+                    <div class="roas-amount">0.83 &#8381;</div>
+                    <div class="roas-label">Получили выручки (сейчас)</div>
+                </div>
+                <div class="roas-arrow">&#8594;</div>
+                <div class="roas-box target">
+                    <div class="roas-amount">2-3 &#8381;</div>
+                    <div class="roas-label">Цель (прибыльная реклама)</div>
+                </div>
+            </div>
+            <p style="font-size:0.9rem;color:var(--gray);text-align:center;margin-top:0.5rem;"><strong style="color:var(--red)">Сейчас каждый рубль рекламы приносит убыток 17 копеек</strong> — без учёта себестоимости продукции. Для прибыльности ROAS должен быть 200–300%.</p>
+        </div>
+
+        <!-- Search vs Brand -->
+        <div class="cards fade-in" style="margin-top:2rem">
+            <div class="card">
+                <div class="card-icon" style="background:#FEF3C7;">&#128270;</div>
+                <h3>Поиск vs РСЯ</h3>
+                <p>102 заказа с поиска против 7 с РСЯ. Доставка еды — импульсная потребность «здесь и сейчас». Баннерная реклама (РСЯ) не работает для этой ниши — пользователю не нужен «прогрев».</p>
+                <div class="rec-effect">Сократить РСЯ = экономия бюджета</div>
+            </div>
+            <div class="card">
+                <div class="card-icon" style="background:#DBEAFE;">&#127991;</div>
+                <h3>Брендовый vs небрендовый трафик</h3>
+                <p>Бренд: 59 заказов, не бренд: 50 заказов — примерно поровну. Клиенты, ищущие «Пироговая компания», уже знают бренд и с высокой вероятностью придут через бесплатную выдачу.</p>
+                <div class="rec-effect">Отключить бренд = экономия ~50% бюджета</div>
+            </div>
+        </div>
+
+        <!-- Conversion Sources -->
+        <div style="margin-top: 3rem;" class="fade-in">
+            <h3 style="text-align:center;margin-bottom:1.5rem;">Источники конверсий (все каналы)</h3>
+            <div class="donut-section">
+                <div class="donut-container">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#E5E7EB" stroke-width="30"/>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#3B82F6" stroke-width="30"
+                                stroke-dasharray="251.3 502.6" stroke-dashoffset="0"/>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#D4451A" stroke-width="30"
+                                stroke-dasharray="150.8 502.6" stroke-dashoffset="-251.3"/>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#F4A236" stroke-width="30"
+                                stroke-dasharray="65.3 502.6" stroke-dashoffset="-402.1"/>
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#9CA3AF" stroke-width="30"
+                                stroke-dasharray="35.2 502.6" stroke-dashoffset="-467.4"/>
+                    </svg>
+                </div>
+                <div class="donut-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#3B82F6"></div>
+                        <span class="legend-text">Поисковые системы (SEO)</span>
+                        <span class="legend-value">50%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#D4451A"></div>
+                        <span class="legend-text">Контекстная реклама</span>
+                        <span class="legend-value">30%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#F4A236"></div>
+                        <span class="legend-text">Прямые заходы</span>
+                        <span class="legend-value">13%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#9CA3AF"></div>
+                        <span class="legend-text">Прочие</span>
+                        <span class="legend-value">7%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="insight-box">
+                <div class="insight-icon">&#128200;</div>
+                <p><strong>Реклама даёт 30% заказов — это хороший показатель.</strong> Однако принципиально увеличить количество заказов через рекламу уже сложно: видимость в рекламных каналах составляет ~90%. Потолок роста через рекламу практически достигнут — нужны другие точки роста.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Recommendations -->
+<section id="recs" class="bg-white">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">6</div>
+            <h2>Рекомендации и план действий</h2>
+            <p>Конкретные шаги для выхода на прибыльность</p>
+        </div>
+
+        <div class="rec-timeline fade-in">
+            <!-- Urgent -->
+            <div class="rec-group">
+                <div class="rec-group-header">
+                    <span class="rec-priority priority-urgent">Срочно</span>
+                    <h3>1–2 недели</h3>
+                </div>
+                <div class="rec-cards">
+                    <div class="rec-card">
+                        <div class="rec-num">1</div>
+                        <div>
+                            <h4>Тест: отключить рекламу по брендовым запросам</h4>
+                            <p>Предлагаем протестировать отключение брендовой рекламы. Если клиенты ищут «Пироговая компания» — вероятно, они и без рекламы закажут через органическую выдачу. Тест покажет, действительно ли бренд-реклама приносит дополнительные заказы или просто каннибализирует бесплатный трафик.</p>
+                            <div class="rec-effect">Потенциальная экономия ~50% бюджета</div>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-num">2</div>
+                        <div>
+                            <h4>Профессиональная фуд-съёмка</h4>
+                            <p>Показать начинку, сделать каждый пирог визуально уникальным. Одна из самых быстрых мер с высоким возвратом.</p>
+                            <div class="rec-effect">Рост конверсии сайта</div>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-num">3</div>
+                        <div>
+                            <h4>Тестирование новых рекламных каналов</h4>
+                            <p>Видимость в контекстной рекламе уже ~90% — потолок практически достигнут. Пора выходить за пределы Яндекс.Директ: реклама в лифтах жилых домов, продвижение в соцсетях (ВК, Telegram), размещение в Яндекс Еде и других агрегаторах доставки.</p>
+                            <div class="rec-effect">Новые источники заказов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medium term -->
+            <div class="rec-group">
+                <div class="rec-group-header">
+                    <span class="rec-priority priority-medium">Среднесрочно</span>
+                    <h3>1–2 месяца</h3>
+                </div>
+                <div class="rec-cards">
+                    <div class="rec-card">
+                        <div class="rec-num">4</div>
+                        <div>
+                            <h4>Расширить меню</h4>
+                            <p>Добавить салаты, десерты, комбо-наборы, бизнес-ланчи, завтраки. Можно начать с партнёрских позиций или полуфабрикатов — без крупных инвестиций в кухню.</p>
+                            <div class="rec-effect">Рост среднего чека и частоты заказов</div>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <div class="rec-num">5</div>
+                        <div>
+                            <h4>Внедрить наборы-дегустации</h4>
+                            <p>4–9 мини-пирогов в одной коробке. Снижает барьер первого заказа (не нужно выбирать один вкус) и увеличивает средний чек.</p>
+                            <div class="rec-effect">Рост конверсии новых клиентов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Long term -->
+            <div class="rec-group">
+                <div class="rec-group-header">
+                    <span class="rec-priority priority-long">Долгосрочно</span>
+                    <h3>2–6 месяцев</h3>
+                </div>
+                <div class="rec-cards">
+                    <div class="rec-card">
+                        <div class="rec-num">6</div>
+                        <div>
+                            <h4>Разработка личного кабинета клиента</h4>
+                            <p>Личный кабинет на сайте с историей заказов, промокодами, персональными скидками и накопительной системой. Это повышает лояльность и стимулирует повторные заказы — ключевой фактор окупаемости в доставке еды.</p>
+                            <div class="rec-effect">Рост повторных заказов и удержание клиентов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. Niche Section -->
+<section id="niche">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">7</div>
+            <h2>Пироги — нишевая продукция</h2>
+            <p>Почему просто увеличивать рекламный бюджет недостаточно</p>
+        </div>
+
+        <div class="fade-in" style="display:grid;gap:1.5rem;margin-top:1rem;">
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:1.5rem;background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:1px solid #FDE68A;border-radius:16px;padding:1.5rem 2rem;align-items:start;">
+                <div style="font-weight:700;color:#92400E;font-size:1rem;padding-top:2px;">Небольшой спрос</div>
+                <div style="font-size:0.95rem;color:var(--dark);line-height:1.6;">Пироги — всего 18% рынка доставки еды в Сургуте. Основные заказы — на мероприятия и когда хочется «поесть по-домашнему», а не на каждый день.</div>
+            </div>
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:1.5rem;background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:1px solid #FDE68A;border-radius:16px;padding:1.5rem 2rem;align-items:start;">
+                <div style="font-weight:700;color:#92400E;font-size:1rem;padding-top:2px;">Много конкурентов</div>
+                <div style="font-size:0.95rem;color:var(--dark);line-height:1.6;">«Хинкал и Чуду» тоже делают пироги в своём меню. «Пицца Фабрика» предлагает всё сразу — и когда заказываешь на семью, проще пойти туда, чтобы угодить всем.</div>
+            </div>
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:1.5rem;background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:1px solid #FDE68A;border-radius:16px;padding:1.5rem 2rem;align-items:start;">
+                <div style="font-weight:700;color:#92400E;font-size:1rem;padding-top:2px;">Потолок рекламы</div>
+                <div style="font-size:0.95rem;color:var(--dark);line-height:1.6;">Видимость в контекстной рекламе уже ~90%. Вливать больше денег в Директ — значит платить за тот же трафик дороже, без роста заказов.</div>
+            </div>
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:1.5rem;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1px solid #86EFAC;border-radius:16px;padding:1.5rem 2rem;align-items:start;">
+                <div style="font-weight:700;color:#166534;font-size:1rem;padding-top:2px;">Вывод</div>
+                <div style="font-size:0.95rem;color:var(--dark);line-height:1.6;">Просто увеличивать бюджет на рекламу недостаточно. Нужны новые каналы привлечения и расширение продуктовой линейки, чтобы конкурировать не только в узкой нише пирогов.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Маркетинговый аудит «Пироговая компания» &mdash; Март 2026</p>
+</footer>
+
+<script>
+    // Scroll fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
