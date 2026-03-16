@@ -783,13 +783,17 @@
             .hero h1 { font-size: 1.8rem; }
             .hero p { font-size: 1rem; }
 
-            /* 1) Hero stats: 2 in a row, compact */
+            /* 1) Hero stats: 2 in a row, last one centered */
             .hero-stats {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
                 max-width: 400px;
                 margin: 0 auto;
+            }
+            .hero-stat:last-child {
+                grid-column: 1 / -1;
+                justify-self: center;
             }
             .hero-stat-value { font-size: 1.6rem; }
             .hero-stat-label { font-size: 0.75rem; }
@@ -810,7 +814,7 @@
                 padding-left: 8px;
             }
             .bar-track {
-                height: 32px;
+                height: 38px;
             }
 
             /* 3) Brand bars: aligned since labels are now above */
@@ -868,13 +872,124 @@
         /* Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Staggered children animation */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
+        .stagger-children.visible > *:nth-child(2) { transition-delay: 0.12s; }
+        .stagger-children.visible > *:nth-child(3) { transition-delay: 0.19s; }
+        .stagger-children.visible > *:nth-child(4) { transition-delay: 0.26s; }
+        .stagger-children.visible > *:nth-child(5) { transition-delay: 0.33s; }
+        .stagger-children.visible > *:nth-child(6) { transition-delay: 0.40s; }
+        .stagger-children.visible > *:nth-child(7) { transition-delay: 0.47s; }
+        .stagger-children.visible > *:nth-child(8) { transition-delay: 0.54s; }
+
+        .stagger-children.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Bar fill animation */
+        .bar-fill {
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Counter animation for hero stats */
+        .hero-stat {
+            opacity: 0;
+            transform: translateY(25px) scale(0.95);
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero.animated .hero-stat {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .hero.animated .hero-stat:nth-child(1) { transition-delay: 0.2s; }
+        .hero.animated .hero-stat:nth-child(2) { transition-delay: 0.4s; }
+        .hero.animated .hero-stat:nth-child(3) { transition-delay: 0.6s; }
+
+        /* Metric card pop-in */
+        .metric-card {
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Smooth scale-in for insight boxes */
+        .insight-box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .insight-box:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 20px rgba(55, 48, 163, 0.08);
+        }
+
+        /* Rec card hover lift */
+        .rec-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .rec-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        /* Donut spin-in */
+        .donut-container svg {
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .donut-spin svg {
+            animation: donutReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes donutReveal {
+            from { transform: rotate(-90deg) scale(0.8); opacity: 0; }
+            to { transform: rotate(-90deg) scale(1); opacity: 1; }
+        }
+
+        /* Hero badge float */
+        .hero-badge {
+            animation: badgeFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Section number pulse on scroll */
+        .section-number {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fade-in.visible .section-number {
+            animation: numberPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+        }
+
+        @keyframes numberPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         /* Menu comparison */
@@ -983,23 +1098,23 @@
             <p>Объём поискового спроса по ключевым категориям в Яндексе</p>
         </div>
 
-        <div class="bar-chart fade-in">
+        <div class="bar-chart fade-in stagger-children">
             <div class="bar-item">
                 <div class="bar-label">Роллы / Суши </div>
                 <div class="bar-track">
-                    <div class="bar-fill blue" style="width: 100%">14 953 запр/мес — 56%</div>
+                    <div class="bar-fill blue" style="--target-width:100%" data-width="100%">14 953 запр/мес — 56%</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Пицца</div>
                 <div class="bar-track">
-                    <div class="bar-fill accent" style="width: 47%">7 000 запр/мес — 26%</div>
+                    <div class="bar-fill accent" style="--target-width:47%" data-width="47%">7 000 запр/мес — 26%</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Пироги</div>
                 <div class="bar-track">
-                    <div class="bar-fill primary" style="width: 32%">4 739 запр — 18%</div>
+                    <div class="bar-fill primary" style="--target-width:32%" data-width="32%">4 739 запр — 18%</div>
                 </div>
             </div>
         </div>
@@ -1020,53 +1135,53 @@
             <p>Брендовый спрос — количество поисковых запросов по названию компании</p>
         </div>
 
-        <div class="bar-chart fade-in">
+        <div class="bar-chart fade-in stagger-children">
             <div class="bar-item">
                 <div class="bar-label">Пицца Фабрика</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 100%">2 522</div>
+                    <div class="bar-fill gray" style="--target-width:100%" data-width="100%">2 522</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Хинкал и Чудушки</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 85%">2 139</div>
+                    <div class="bar-fill gray" style="--target-width:85%" data-width="85%">2 139</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label" style="font-weight:700;color:var(--primary)">Пироговая компания</div>
                 <div class="bar-track">
-                    <div class="bar-fill primary" style="width: 66%">1 673</div>
+                    <div class="bar-fill primary" style="--target-width:66%" data-width="66%">1 673</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Чашечка</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 48%">1 200</div>
+                    <div class="bar-fill gray" style="--target-width:48%" data-width="48%">1 200</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Машенькины пироги</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 30%">750</div>
+                    <div class="bar-fill gray" style="--target-width:30%" data-width="30%">750</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Пироговая 1</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 21%">535</div>
+                    <div class="bar-fill gray" style="--target-width:21%" data-width="21%">535</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Обожайка</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 20%">500</div>
+                    <div class="bar-fill gray" style="--target-width:20%" data-width="20%">500</div>
                 </div>
             </div>
             <div class="bar-item">
                 <div class="bar-label">Сибирский пекарь</div>
                 <div class="bar-track">
-                    <div class="bar-fill gray" style="width: 19%">472</div>
+                    <div class="bar-fill gray" style="--target-width:19%" data-width="19%">472</div>
                 </div>
             </div>
         </div>
@@ -1087,7 +1202,7 @@
             <p>Сравнение ширины меню с основными конкурентами</p>
         </div>
 
-        <div class="menu-comparison fade-in">
+        <div class="menu-comparison fade-in stagger-children">
             <div class="menu-card">
                 <h4>Пицца Фабрика <span class="menu-count">14 категорий</span></h4>
                 <div class="menu-tags">
@@ -1222,7 +1337,7 @@
             <p>Текущие показатели контекстной рекламы за март 2026</p>
         </div>
 
-        <div class="metrics-grid fade-in">
+        <div class="metrics-grid fade-in stagger-children">
             <div class="metric-card">
                 <div class="metric-value accent">256 000 &#8381;</div>
                 <div class="metric-label">Расход в марте</div>
@@ -1432,7 +1547,7 @@
             <p>Почему просто увеличивать рекламный бюджет недостаточно</p>
         </div>
 
-        <div class="fade-in" style="display:grid;gap:1.5rem;margin-top:1rem;">
+        <div class="fade-in stagger-children" style="display:grid;gap:1.5rem;margin-top:1rem;">
             <div class="niche-item" style="display:grid;grid-template-columns:200px 1fr;gap:1.5rem;background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:1px solid #FDE68A;border-radius:16px;padding:1.5rem 2rem;align-items:start;">
                 <div style="font-weight:700;color:#92400E;font-size:1rem;padding-top:2px;">Небольшой спрос</div>
                 <div style="font-size:0.95rem;color:var(--dark);line-height:1.6;">Пироги — всего 18% рынка доставки еды в Сургуте. Основные заказы — на мероприятия и когда хочется «поесть по-домашнему», а не на каждый день.</div>
@@ -1458,16 +1573,48 @@
 </footer>
 
 <script>
-    // Scroll fade-in animation
+    // Scroll fade-in & stagger animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+
+                // Animate bar fills when bar-chart becomes visible
+                if (entry.target.classList.contains('bar-chart')) {
+                    const fills = entry.target.querySelectorAll('.bar-fill[data-width]');
+                    fills.forEach((bar, i) => {
+                        setTimeout(() => {
+                            bar.style.width = bar.dataset.width;
+                        }, 150 + i * 120);
+                    });
+                }
             }
         });
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Initialize bar fills at 0 width, store target
+    document.querySelectorAll('.bar-fill[data-width]').forEach(bar => {
+        bar.style.width = '0%';
+    });
+
+    // Hero entrance animation
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        setTimeout(() => hero.classList.add('animated'), 300);
+    }
+
+    // Donut spin-in on scroll
+    const donutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('donut-spin');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.donut-container').forEach(el => donutObserver.observe(el));
 
     // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
