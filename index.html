@@ -839,6 +839,11 @@
                 grid-template-columns: 1fr !important;
             }
 
+            /* Brand charts: stack vertically */
+            .brand-charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
             /* 5) Niche section: stack label + text */
             .niche-item {
                 grid-template-columns: 1fr !important;
@@ -1063,6 +1068,7 @@
             <li><a href="#ads">Реклама</a></li>
             <li><a href="#recs">Рекомендации</a></li>
             <li><a href="#niche">Выводы</a></li>
+            <li><a href="#brand-demand">Спрос</a></li>
         </ul>
     </div>
 </nav>
@@ -1269,7 +1275,7 @@
             <h2>Лучшая практика: наборы-дегустации</h2>
             <p>Наборы из нескольких вкусов в одной коробке снижают барьер первого заказа и увеличивают средний чек. Клиенту не нужно выбирать один вкус — он получает сразу несколько.</p>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;" class="fade-in degustation-grid">
+        <div style="display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:2rem;max-width:800px;margin-left:auto;margin-right:auto;" class="fade-in degustation-grid">
             <div style="border-radius:16px;overflow:hidden;border:1px solid #E5E7EB;">
                 <img src="1.jpg" alt="Пример набора-дегустации 1" style="width:100%;height:auto;display:block;">
             </div>
@@ -1286,7 +1292,7 @@
 
 <!-- 4. Visual -->
 <section id="visual" class="bg-white">
-    <div class="container">
+    <div class="container" style="max-width:1400px;">
         <div class="section-header fade-in">
             <div class="section-number">4</div>
             <h2>Визуальная подача на сайте</h2>
@@ -1569,6 +1575,71 @@
     </div>
 </section>
 
+<!-- 8. Brand Demand Charts -->
+<section id="brand-demand" class="bg-white">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-number">8</div>
+            <h2>Брендовый спрос: динамика по конкурентам</h2>
+            <p>Данные Яндекс Вордстат — количество поисковых запросов с упоминанием бренда</p>
+        </div>
+
+        <div class="fade-in" style="margin-top:2rem;">
+            <div style="background:#fff;border-radius:16px;border:1px solid #E5E7EB;padding:1.5rem;margin-bottom:2rem;">
+                <h3 style="text-align:center;margin-bottom:1rem;font-size:1.1rem;">Пироговая компания</h3>
+                <div style="position:relative;height:300px;"><canvas id="chart-pirog"></canvas></div>
+                <div class="insight-box" style="margin-top:1rem;">
+                    <div class="insight-icon">&#128308;</div>
+                    <p><strong>Нисходящий тренд.</strong> Брендовый спрос «Пироговой компании» снижается с 2022 года. Пик был в феврале 2023 (1 256 запросов), сейчас — около 700–800. Это сигнал ослабления узнаваемости бренда.</p>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="brand-charts-grid">
+                <div style="background:#fff;border-radius:16px;border:1px solid #E5E7EB;padding:1.5rem;">
+                    <h3 style="text-align:center;margin-bottom:1rem;font-size:1.1rem;">Машенькины пироги</h3>
+                    <div style="position:relative;height:250px;"><canvas id="chart-mashenka"></canvas></div>
+                    <div class="insight-box" style="margin-top:1rem;">
+                        <div class="insight-icon">&#128994;</div>
+                        <p><strong>Взрывной рост.</strong> С нуля до 663 запросов за 1,5 года. Активно наращивают узнаваемость — уже приближаются к уровню «Пироговой компании».</p>
+                    </div>
+                </div>
+
+                <div style="background:#fff;border-radius:16px;border:1px solid #E5E7EB;padding:1.5rem;">
+                    <h3 style="text-align:center;margin-bottom:1rem;font-size:1.1rem;">Обожайка</h3>
+                    <div style="position:relative;height:250px;"><canvas id="chart-obozhaika"></canvas></div>
+                    <div class="insight-box" style="margin-top:1rem;">
+                        <div class="insight-icon">&#128308;</div>
+                        <p><strong>Нисходящий тренд.</strong> Спрос упал с 1 619 до ~430. Обожайка теряет аудиторию — возможно, их клиенты переходят к другим игрокам.</p>
+                    </div>
+                </div>
+
+                <div style="background:#fff;border-radius:16px;border:1px solid #E5E7EB;padding:1.5rem;">
+                    <h3 style="text-align:center;margin-bottom:1rem;font-size:1.1rem;">Сибирский пекарь</h3>
+                    <div style="position:relative;height:250px;"><canvas id="chart-sibirsky"></canvas></div>
+                    <div class="insight-box" style="margin-top:1rem;">
+                        <div class="insight-icon">&#128994;</div>
+                        <p><strong>Устойчивый рост.</strong> Со 161 до 420 запросов — стабильный рост узнаваемости. Конкурент набирает силу.</p>
+                    </div>
+                </div>
+
+                <div style="background:#fff;border-radius:16px;border:1px solid #E5E7EB;padding:1.5rem;">
+                    <h3 style="text-align:center;margin-bottom:1rem;font-size:1.1rem;">Хинкал и Чуду</h3>
+                    <div style="position:relative;height:250px;"><canvas id="chart-hinkal"></canvas></div>
+                    <div class="insight-box" style="margin-top:1rem;">
+                        <div class="insight-icon">&#128994;</div>
+                        <p><strong>Быстрый рост.</strong> С 72 до 384 — более чем пятикратный рост. Особенно резкий скачок с сентября 2025. Активно отбирают долю рынка.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box fade-in" style="margin-top:2rem;background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border-color:#FECACA;">
+                <div class="insight-icon">&#9888;&#65039;</div>
+                <p><strong>Общий вывод:</strong> Брендовый спрос «Пироговой компании» снижается, тогда как конкуренты («Машенькины пироги», «Сибирский пекарь», «Хинкал и Чуду») активно растут. Без работы над узнаваемостью бренда — через рекламу, соцсети, агрегаторы — разрыв будет продолжать сокращаться.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer>
     <p>Маркетинговый аудит «Пироговая компания» &mdash; Март 2026</p>
 </footer>
@@ -1627,6 +1698,152 @@
             }
         });
     });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+(function() {
+    // Helper: linear regression for trend line
+    function linearRegression(data) {
+        const n = data.length;
+        let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+        for (let i = 0; i < n; i++) {
+            sumX += i;
+            sumY += data[i];
+            sumXY += i * data[i];
+            sumX2 += i * i;
+        }
+        const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+        const intercept = (sumY - slope * sumX) / n;
+        return data.map((_, i) => Math.round(slope * i + intercept));
+    }
+
+    // Chart data
+    const pirog = {
+        labels: ['Янв 22','Фев 22','Мар 22','Апр 22','Май 22','Июн 22','Июл 22','Авг 22','Сен 22','Окт 22','Ноя 22','Дек 22','Янв 23','Фев 23','Мар 23','Апр 23','Май 23','Июн 23','Июл 23','Авг 23','Сен 23','Окт 23','Ноя 23','Дек 23','Янв 24','Фев 24','Мар 24','Апр 24','Май 24','Июн 24','Июл 24','Авг 24','Сен 24','Окт 24','Ноя 24','Дек 24','Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26'],
+        values: [636,857,865,782,722,828,654,713,705,828,968,989,850,1256,1069,950,855,776,835,741,724,821,934,982,789,1205,871,805,787,635,694,603,663,742,681,838,771,942,793,598,636,671,625,611,649,734,695,800,645,794]
+    };
+
+    const mashenka = {
+        labels: ['Авг 24','Сен 24','Окт 24','Ноя 24','Дек 24','Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26'],
+        values: [0,14,4,7,17,191,528,402,404,361,377,452,463,410,642,518,674,594,663]
+    };
+
+    const obozhaika = {
+        labels: ['Авг 24','Сен 24','Окт 24','Ноя 24','Дек 24','Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26'],
+        values: [1619,1307,923,475,718,471,730,644,783,488,579,437,420,415,408,416,491,397,431]
+    };
+
+    const sibirsky = {
+        labels: ['Авг 24','Сен 24','Окт 24','Ноя 24','Дек 24','Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26'],
+        values: [161,196,218,231,308,224,316,367,274,336,310,342,306,297,334,289,460,371,420]
+    };
+
+    const hinkal = {
+        labels: ['Авг 24','Сен 24','Окт 24','Ноя 24','Дек 24','Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26'],
+        values: [72,68,89,91,117,147,132,148,124,108,110,145,123,185,270,301,370,380,384]
+    };
+
+    function createChart(canvasId, data, color, trendColor) {
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+        const trend = linearRegression(data.values);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [
+                    {
+                        label: 'Брендовый спрос',
+                        data: data.values,
+                        borderColor: color,
+                        backgroundColor: color + '20',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2.5
+                    },
+                    {
+                        label: 'Линия тренда',
+                        data: trend,
+                        borderColor: trendColor,
+                        borderDash: [8, 4],
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart',
+                    delay: function(context) {
+                        return context.dataIndex * 40;
+                    }
+                },
+                animations: {
+                    y: {
+                        from: function(ctx) {
+                            if (ctx.type === 'data') {
+                                return ctx.chart.scales.y.getPixelForValue(0);
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { font: { size: 12 }, usePointStyle: true }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26,26,46,0.9)',
+                        titleFont: { size: 13 },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            font: { size: 10 },
+                            maxTicksLimit: 12
+                        },
+                        grid: { display: false }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: { font: { size: 11 } },
+                        grid: { color: '#F3F4F6' }
+                    }
+                }
+            }
+        });
+    }
+
+    // Observe and create charts when visible
+    const chartObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                createChart('chart-pirog', pirog, '#D4451A', '#EF4444');
+                createChart('chart-mashenka', mashenka, '#10B981', '#059669');
+                createChart('chart-obozhaika', obozhaika, '#8B5CF6', '#7C3AED');
+                createChart('chart-sibirsky', sibirsky, '#3B82F6', '#2563EB');
+                createChart('chart-hinkal', hinkal, '#F59E0B', '#D97706');
+                chartObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const brandSection = document.getElementById('brand-demand');
+    if (brandSection) chartObserver.observe(brandSection);
+})();
 </script>
 
 </body>
