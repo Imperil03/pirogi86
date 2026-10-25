@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "kind": "standalone-source",
+  "generatedAt": "2026-10-25T18:59:05.792344+00:00",
+  "sourceSnapshotAt": "2026-10-25T13:43:03+05:00",
+  "htmlSha256": "ab1c68bf2e338207d7fcde40dd413b6326d30e4e59a96f4e162d1a1a51ff1c86",
+  "snapshotSha256": "9147afb7a928a598ece1d82f895c3c71c75230b040419f334e854ffb4927f080",
+  "htmlBytes": 20271275,
+  "htmlGzipBytes": 1347502,
+  "queryRows": {
+    "orders_daily": 5261,
+    "products_catalog": 643,
+    "products_daily": 89132,
+    "streets_daily": 42682,
+    "customer_summary": 1,
+    "customer_top": 10,
+    "customer_frequency": 4
+  },
+  "orders": 66950,
+  "noncancelledOrders": 66512,
+  "identifiedCustomers": 26323
+}
