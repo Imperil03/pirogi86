@@ -1,13 +1,13 @@
 {
-  "version": 5,
+  "version": 6,
   "kind": "standalone-source",
-  "generatedAt": "2026-10-26T06:32:40.310051+00:00",
+  "generatedAt": "2026-10-26T08:42:53.721189+00:00",
   "sourceSnapshotAt": "2026-10-25T13:43:03+05:00",
   "buildingReferenceSnapshotAt": "2026-10-26T04:30:20Z",
-  "htmlSha256": "31ac3698e6c5cd122aab11e4a9ed15f15755838ed53d411b26c1462cdea6475c",
-  "snapshotSha256": "c4dd308f712a1eba50bdfc5c0407974aa051a30af9c19cfffb4174c72b2c85f6",
-  "htmlBytes": 36480155,
-  "htmlGzipBytes": 1956332,
+  "htmlSha256": "442d42bd848756a412b9adad13d48588ee6f017ff60f6c57e74eb6e3f9247210",
+  "snapshotSha256": "f9608d5656b396e522b94ce04edbf6a48b439880f3ac0f0cd9220fe80f0d5aa3",
+  "htmlBytes": 40070114,
+  "htmlGzipBytes": 2111366,
   "queryRows": {
     "orders_daily": 5261,
     "products_catalog": 643,
@@ -27,7 +27,9 @@
     "existing_bundles": 2,
     "building_types_daily": 10980,
     "building_top20": 40,
-    "building_finance_daily": 10980
+    "building_finance_daily": 10980,
+    "building_assignment_daily": 15567,
+    "building_top20_assignments": 40
   },
   "orders": 66950,
   "noncancelledOrders": 66512,
@@ -41,6 +43,14 @@
   ],
   "publishedAddressRows": 40,
   "addressPublicationExplicitlyApproved": true,
+  "manualOwnerAddresses": 5,
+  "heuristicAddressKeys": 572,
+  "assignmentDefaultMode": "expanded",
+  "assumptionViewKey": "buildingUnknownTypeOffice",
+  "assumptionViewCodes": {
+    "expanded": 1,
+    "strict": -1
+  },
   "buildingReference": "OpenStreetMap",
   "buildingReferenceAttribution": "© OpenStreetMap contributors"
 }
