@@ -1,12 +1,13 @@
 {
-  "version": 2,
+  "version": 3,
   "kind": "standalone-source",
-  "generatedAt": "2026-10-25T18:59:05.792344+00:00",
+  "generatedAt": "2026-10-26T03:56:07.075435+00:00",
   "sourceSnapshotAt": "2026-10-25T13:43:03+05:00",
-  "htmlSha256": "ab1c68bf2e338207d7fcde40dd413b6326d30e4e59a96f4e162d1a1a51ff1c86",
-  "snapshotSha256": "9147afb7a928a598ece1d82f895c3c71c75230b040419f334e854ffb4927f080",
-  "htmlBytes": 20271275,
-  "htmlGzipBytes": 1347502,
+  "pricesObservedAt": "2026-10-26",
+  "htmlSha256": "3586cc04735397a145cf9d223d0f2ee1efa210e98242767839771db2710d49c0",
+  "snapshotSha256": "7be21bb501ae4b4a27ea2330a9168260b81ae02a93fdf96749bdf0e3e1bfaab1",
+  "htmlBytes": 33363899,
+  "htmlGzipBytes": 1796439,
   "queryRows": {
     "orders_daily": 5261,
     "products_catalog": 643,
@@ -14,9 +15,20 @@
     "streets_daily": 42682,
     "customer_summary": 1,
     "customer_top": 10,
-    "customer_frequency": 4
+    "customer_frequency": 4,
+    "operations_daily": 39402,
+    "lead_daily": 18464,
+    "categories_daily": 28066,
+    "customer_cohorts": 273,
+    "customer_flow_monthly": 92,
+    "product_pairs": 100,
+    "bundle_baseline": 1,
+    "bundle_scenarios": 4,
+    "existing_bundles": 2
   },
   "orders": 66950,
   "noncancelledOrders": 66512,
-  "identifiedCustomers": 26323
+  "identifiedCustomers": 26323,
+  "bundlePricesAreScenarios": true,
+  "productionCatalogueChanged": false
 }
