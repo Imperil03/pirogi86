@@ -1,13 +1,13 @@
 {
-  "version": 4,
+  "version": 5,
   "kind": "standalone-source",
-  "generatedAt": "2026-10-26T04:50:28.339065+00:00",
+  "generatedAt": "2026-10-26T06:32:40.310051+00:00",
   "sourceSnapshotAt": "2026-10-25T13:43:03+05:00",
   "buildingReferenceSnapshotAt": "2026-10-26T04:30:20Z",
-  "htmlSha256": "8d417c11ce36571c4538878b1d406fc36c8eb8a1bb59e68c7992ee2713620424",
-  "snapshotSha256": "cf4156ca2470b9d13ae06710346d29cffade5f4c662c019f1d95fbef017a9239",
-  "htmlBytes": 34682333,
-  "htmlGzipBytes": 1852245,
+  "htmlSha256": "31ac3698e6c5cd122aab11e4a9ed15f15755838ed53d411b26c1462cdea6475c",
+  "snapshotSha256": "c4dd308f712a1eba50bdfc5c0407974aa051a30af9c19cfffb4174c72b2c85f6",
+  "htmlBytes": 36480155,
+  "htmlGzipBytes": 1956332,
   "queryRows": {
     "orders_daily": 5261,
     "products_catalog": 643,
@@ -26,11 +26,19 @@
     "bundle_scenarios": 4,
     "existing_bundles": 2,
     "building_types_daily": 10980,
-    "building_top20": 40
+    "building_top20": 40,
+    "building_finance_daily": 10980
   },
   "orders": 66950,
   "noncancelledOrders": 66512,
   "deliveries": 59622,
+  "knownDeliveryAmounts": 58349,
+  "deliveryAmountKopecks": 14417803577,
+  "officeGroupTypes": [
+    "office",
+    "mixed",
+    "other_nonresidential"
+  ],
   "publishedAddressRows": 40,
   "addressPublicationExplicitlyApproved": true,
   "buildingReference": "OpenStreetMap",
