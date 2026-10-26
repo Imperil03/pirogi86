@@ -1,13 +1,13 @@
 {
-  "version": 3,
+  "version": 4,
   "kind": "standalone-source",
-  "generatedAt": "2026-10-26T03:56:07.075435+00:00",
+  "generatedAt": "2026-10-26T04:50:28.339065+00:00",
   "sourceSnapshotAt": "2026-10-25T13:43:03+05:00",
-  "pricesObservedAt": "2026-10-26",
-  "htmlSha256": "3586cc04735397a145cf9d223d0f2ee1efa210e98242767839771db2710d49c0",
-  "snapshotSha256": "7be21bb501ae4b4a27ea2330a9168260b81ae02a93fdf96749bdf0e3e1bfaab1",
-  "htmlBytes": 33363899,
-  "htmlGzipBytes": 1796439,
+  "buildingReferenceSnapshotAt": "2026-10-26T04:30:20Z",
+  "htmlSha256": "8d417c11ce36571c4538878b1d406fc36c8eb8a1bb59e68c7992ee2713620424",
+  "snapshotSha256": "cf4156ca2470b9d13ae06710346d29cffade5f4c662c019f1d95fbef017a9239",
+  "htmlBytes": 34682333,
+  "htmlGzipBytes": 1852245,
   "queryRows": {
     "orders_daily": 5261,
     "products_catalog": 643,
@@ -24,11 +24,15 @@
     "product_pairs": 100,
     "bundle_baseline": 1,
     "bundle_scenarios": 4,
-    "existing_bundles": 2
+    "existing_bundles": 2,
+    "building_types_daily": 10980,
+    "building_top20": 40
   },
   "orders": 66950,
   "noncancelledOrders": 66512,
-  "identifiedCustomers": 26323,
-  "bundlePricesAreScenarios": true,
-  "productionCatalogueChanged": false
+  "deliveries": 59622,
+  "publishedAddressRows": 40,
+  "addressPublicationExplicitlyApproved": true,
+  "buildingReference": "OpenStreetMap",
+  "buildingReferenceAttribution": "© OpenStreetMap contributors"
 }
